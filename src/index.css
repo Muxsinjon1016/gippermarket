@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;800;900&display=swap);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Jost", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 100px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: #888;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
