@@ -4,7 +4,7 @@ import { Modal } from "../../components/ui/modal";
 import { Button } from "../../components/ui/button";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
-import { Search } from "../../components/ui/search";
+import  Search  from "../../components/ui/search";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoMdCart } from "react-icons/io";

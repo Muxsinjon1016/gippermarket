@@ -13,6 +13,8 @@ export const Button = ({
 }) => {
   const variants = {
     default: "py-[10px] px-[12px] bg-gipermart flex items-center gap-3",
+    danger:
+      "py-[10px] text-white px-[12px] bg-[#E44542] flex items-center gap-3",
   };
 
   return (
@@ -26,9 +28,9 @@ export const Button = ({
       )}
       type={type}
     >
-      <span>{startIcon}</span>
-      <span>{children}</span>
-      <span>{endIcon}</span>
+      <span className="block mx-auto">{startIcon}</span>
+      <span className="block mx-auto">{children}</span>
+      <span className="block mx-auto">{endIcon}</span>
     </button>
   );
 };

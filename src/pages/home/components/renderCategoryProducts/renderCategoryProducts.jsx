@@ -1,29 +1,38 @@
 import React from "react";
 import useCategoryProducts from "../../services/useCategoryProducts";
 import { FaCartShopping } from "react-icons/fa6";
+import { ProductSkeleton } from "../../../../components/ui/skeletonProducts";
+import { useNavigate } from "react-router-dom";
 
-export const RenderCategoryProducts = ({ img, title, price, id }) => {
+export const RenderCategoryProducts = () => {
   const { data, isLoading } = useCategoryProducts();
+  const navigate = useNavigate();
+
+  const toDetails = (id) => {
+    navigate(`/product-details/${id}`);
+  };
+
   return (
     <div className="flex container mt-[150px] justify-between">
       <div className="flex-1 max-w-[1000px] scrollbar-custom h-[calc(100vh-120px)] overflow-y-auto pr-4">
         <h3 className="text-2xl font-semibold">Смартфоны и планшеты</h3>
         <div className="flex flex-wrap justify-between">
           {isLoading ? (
-            <h1>loading...</h1>
+            <ProductSkeleton />
           ) : (
             data?.map((item) => (
               <div
+                onClick={() => toDetails(item.id)}
                 key={item.id}
-                className="w-[214px] mb-[48px] relative h-[332px] py-2 px-4"
+                className="w-[214px] border-2 product transition-all overflow-hidden cursor-grab duration-300 text-center mb-[48px] relative h-[332px] rounded-12 hover:shadow-xl py-2 px-4"
               >
                 <img
-                  className="w-[165px] h-[165px] mb-3"
+                  className="w-[165px] transition-all duration-300 productImg h-[165px] mb-3"
                   src={item.img}
-                  alt="phone image"
+                  alt={item.title}
                 />
                 <h4>{item.title}</h4>
-                <div className="absolute flex items-center gap-[11px] bottom-0 left-0">
+                <div className="absolute z-20 flex items-center gap-[11px] bottom-5 left-5">
                   <p className="font-semibold">{item.price} Сум</p>
                   <button className="p-2 bg-gipermart">
                     <FaCartShopping />
