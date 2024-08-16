@@ -17,11 +17,11 @@ export const RenderPhones = ({ img, title, price, id }) => {
     <>
       <div
         onClick={() => toDetails(id)}
-        className="w-[214px] cursor-pointer mb-[48px] relative h-[300px] py-2 px-4"
+        className="w-[214px] container border-2 product transition-all overflow-hidden cursor-grab duration-300 text-center mb-[48px] relative h-[332px] rounded-12 hover:shadow-xl py-2 px-4"
       >
         <img className="w-[165px] h-[165px] mb-3" src={img} alt="phone image" />
         <h4>{title}</h4>
-        <div className="absolute flex items-center gap-[11px] bottom-0 left-0">
+        <div className="absolute flex items-center gap-[11px] bottom-5 left-5">
           <p className="font-semibold">{price} Сум</p>
           <button onClick={savetoLocal} className="p-2 bg-gipermart">
             <FaCartShopping />

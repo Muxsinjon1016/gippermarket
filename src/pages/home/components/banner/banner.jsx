@@ -19,7 +19,7 @@ export const Banner = () => {
   };
 
   return (
-    <div className="mx-auto mt-[120px] relative">
+    <div className="mx-auto container mt-[120px] relative">
       <Slider {...settings}>
         {isLoading ? (
           <Skeleton />

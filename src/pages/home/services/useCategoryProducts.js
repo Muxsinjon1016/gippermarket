@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { request } from "../../../config/request";
 import { useParams } from "react-router-dom";
 
-const useCategoryProducts = () => {
+export const useCategoryProducts = () => {
   const { name } = useParams();
 
   return useQuery({

@@ -11,7 +11,7 @@ export const ProductDetails = () => {
 
   return (
     <>
-      <div className="mt-[150px]">
+      <div className="mt-[150px] container">
         {isLoading ? (
           <ProductDetailSkeleton />
         ) : (
@@ -188,7 +188,7 @@ export const ProductDetails = () => {
                     </li>
                   )}
                   {data.rame && (
-                    <li className="flexmax-w-[600px] items-center justify-between gap-4">
+                    <li className="flex max-w-[600px] items-center justify-between gap-4">
                       <p className="text-gray-400 truncate mb-4">
                         оперативная память
                       </p>

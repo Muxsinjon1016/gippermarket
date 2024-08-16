@@ -16,7 +16,7 @@ export const Categories = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-  };
+  }
 
   const navigate = useNavigate();
 

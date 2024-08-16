@@ -4,7 +4,7 @@ import { Modal } from "../../components/ui/modal";
 import { Button } from "../../components/ui/button";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
-import  Search  from "../../components/ui/search";
+import Search from "../../components/ui/search";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoMdCart } from "react-icons/io";
@@ -16,7 +16,7 @@ export const Header = () => {
 
   return (
     <>
-      <div className="bg-white z-30 fixed top-0 left-0 right-0">
+      <div className="bg-white shadow-lg z-30 fixed top-0 left-0 right-0">
         <div className="container">
           <div className="py-2 flex justify-end">
             <ul className="flex items-center gap-8">
@@ -29,14 +29,17 @@ export const Header = () => {
               </li>
             </ul>
           </div>
-          <div className="py-4 flex items-center justify-between gap-[52px]">
+          <div className="py-3 flex items-center justify-between gap-[52px]">
             <div className="flex items-center gap-8">
-              <img
-                className="cursor-pointer"
+              <div
                 onClick={() => navigate("/")}
-                src="/logo.svg"
-                alt="logo"
-              />
+                className="relative cursor-pointer flex items-center gap-2"
+              >
+                <img className="w-[65px] h-auto" src="/logo.svg" alt="logo" />
+                <span className="text-4xl font-semibold text-[#feee00]">
+                  IPER<span className="text-3xl">MART</span>
+                </span>
+              </div>
               <div>
                 {catalogModal ? (
                   <Button

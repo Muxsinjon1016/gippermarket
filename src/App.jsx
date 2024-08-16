@@ -4,26 +4,25 @@ import MainLayout from "./layout/mainLayout";
 import { Home } from "./pages/home";
 import { RenderCategoryProducts } from "./pages/home/components/renderCategoryProducts";
 import { ProductDetails } from "./pages/home/components/productDetails";
+import { RenderBrandsProducts } from "./pages/home/components/renderBrandProducts/renderBrandsProducts";
+import { NotFound } from "./layout/notFound";
 
 function App() {
   return (
-    <div className="container">
+    <div>
       <Routes>
         <Route path="/" element={<MainLayout />}>
-          <Route
-            path="*"
-            element={
-              <h1 className="mt-[230px] font-bold text-7xl block ml-64 container">
-                NotFound
-              </h1>
-            }
-          />
+          <Route path="*" element={<NotFound />} />
           <Route index element={<Home />} />
           <Route
             path="category-product/:name"
             element={<RenderCategoryProducts />}
           />
           <Route path="product-details/:id" element={<ProductDetails />} />
+          <Route
+            path="brand-products/:brand"
+            element={<RenderBrandsProducts />}
+          />
           <Route />
         </Route>
       </Routes>
