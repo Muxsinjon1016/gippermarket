@@ -30,6 +30,7 @@ html {
   background: #555;
 }
 
-.product:hover .productImg{
-transform: scale(1.1);
+.product:hover .productImg {
+  transform: scale(1.1);
 }
+

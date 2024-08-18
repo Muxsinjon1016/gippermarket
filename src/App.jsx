@@ -6,6 +6,7 @@ import { RenderCategoryProducts } from "./pages/home/components/renderCategoryPr
 import { ProductDetails } from "./pages/home/components/productDetails";
 import { RenderBrandsProducts } from "./pages/home/components/renderBrandProducts/renderBrandsProducts";
 import { NotFound } from "./layout/notFound";
+import { Cart } from "./pages/cart";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             path="brand-products/:brand"
             element={<RenderBrandsProducts />}
           />
+          <Route path="cart" element={<Cart />} />
           <Route />
         </Route>
       </Routes>

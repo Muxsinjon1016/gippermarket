@@ -30,4 +30,4 @@ export const Advert = () => {
   );
 };
 
-export default Advert;
+export default Advert
