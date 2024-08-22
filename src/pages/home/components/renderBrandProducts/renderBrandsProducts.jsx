@@ -47,7 +47,7 @@ export const RenderBrandsProducts = () => {
       localStorage.removeItem(id);
       setCart(false);
     }
-  };
+  }
 
   const toDetails = (id) => {
     navigate(`/product-details/${id}`);

@@ -1,7 +1,9 @@
 import axios from "axios";
 import { loadState } from "./storage";
 
-const request = axios.create({ baseURL: "http://localhost:3600" });
+const request = axios.create({
+  baseURL: "https://gipermart-server-three.vercel.app",
+});
 
 request.interceptors.request.use((config) => {
   config.headers = {
