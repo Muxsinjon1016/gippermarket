@@ -20,9 +20,9 @@ export const Banner = () => {
   };
 
   return (
-    <div className="mx-auto container -mb-10 mt-[150px] relative">
-      <div className="flex items-center justify-between">
-        <div className="w-[978px] inline h-[431px]">
+    <div className="mx-auto container -mb-10 mt-[120px] lg:mt-[150px] relative">
+      <div className="flex flex-wrap items-center justify-between">
+        <div className="lg:w-[800px] xl:w-[978px] mx-auto w-[250px] h-[200px] sm:w-[500px] sm:h-[350px] inline lg:h-[380px] xl:h-[431px]">
           <Slider {...settings}>
             {isLoading ? (
               <Skeleton />
@@ -30,7 +30,7 @@ export const Banner = () => {
               data?.map((item) => (
                 <div key={item.id}>
                   <img
-                    className="w-full h-full object-cover rounded-20 overflow-hidden"
+                    className="object-cover rounded-20 overflow-hidden"
                     src={item.img}
                     alt="Banner"
                   />
@@ -39,7 +39,7 @@ export const Banner = () => {
             )}
           </Slider>
         </div>
-        <div className="-mt-16">
+        <div className="-mt-16 sm:-mt-40 md:-mt-16 text-center mx-auto">
           <DayOfProduct />
         </div>
       </div>

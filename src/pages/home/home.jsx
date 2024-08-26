@@ -17,7 +17,6 @@ export const Home = () => {
       </div>
       <Discount />
       <div className="container">
-        {/* <Mixed /> */}
         <Advert />
         <Laptops />
         <Brands />

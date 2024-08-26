@@ -9,7 +9,7 @@ export const Discount = () => {
       <div className="bg-gradient-to-r mb-8 from-[rgba(222,0,255,1)] to-[rgba(255,252,0,1)] pt-4 pb-8">
         <div className="container">
           <h2 className="font-semibold text-2xl mb-6">Акции</h2>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap gap-4 items-center justify-evenly">
             {data?.map((discount) => (
               <div key={discount.id}>
                 <img className="rounded-20" src={discount.img} alt="img" />

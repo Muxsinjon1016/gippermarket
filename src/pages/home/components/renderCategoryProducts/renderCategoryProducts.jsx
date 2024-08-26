@@ -15,8 +15,7 @@ export const RenderCategoryProducts = () => {
   return (
     <div className="flex container mt-[150px] justify-between">
       <div className="flex-1 max-w-[1000px] scrollbar-custom h-[calc(100vh-120px)] overflow-y-auto pr-4">
-        <h3 className="text-2xl font-semibold">Смартфоны и планшеты</h3>
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap justify-evenly">
           {isLoading ? (
             <ProductSkeleton />
           ) : (
@@ -43,7 +42,7 @@ export const RenderCategoryProducts = () => {
           )}
         </div>
       </div>
-      <div className="max-w-[328px] py-4 px-10 scrollbar-custom h-[calc(100vh-120px)] overflow-y-auto pl-4">
+      <div className="max-w-[328px] hidden lg:block py-4 px-10 scrollbar-custom h-[calc(100vh-120px)] overflow-y-auto pl-4">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
         accusantium expedita velit, natus rem doloremque sit cum necessitatibus
         reprehenderit cumque modi provident, ullam facere voluptatibus excepturi

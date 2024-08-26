@@ -27,7 +27,7 @@ export const Input = ({
           type={type}
           placeholder={placeholder}
           className={clsx(
-            "outline-none w-[380%]",
+            "outline-none max-w-[380%]",
             variants[variant],
             className
           )}

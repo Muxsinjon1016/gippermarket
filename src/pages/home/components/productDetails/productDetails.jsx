@@ -4,10 +4,65 @@ import { ProductDetailSkeleton } from "../../../../components/ui/productDetailSk
 import { IoStar } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa6";
 import { Button } from "../../../../components/ui/button";
+import { saveState } from "../../../../config/storage";
 
 export const ProductDetails = () => {
   const { data, isLoading } = useProductDetails();
   const [allDetail, setAllDetail] = React.useState(false);
+  const [cart, setCart] = React.useState(false);
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    if (data?.id) {
+      const savedItem = JSON.parse(localStorage.getItem(data.id) || "{}");
+      if (savedItem?.count !== undefined) {
+        setCount(savedItem.count);
+        setCart(true);
+      }
+    }
+  }, [data?.id]);
+
+  const savetoLocal = () => {
+    const newItem = {
+      img: data.img,
+      id: data.id,
+      title: data.title,
+      price: data.price,
+      count: 1,
+    };
+    saveState(data.id, newItem);
+    setCount(1);
+    setCart(true);
+  };
+
+  const incrementCount = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+    saveState(data.id, {
+      id: data.id,
+      img: data.img,
+      title: data.title,
+      price: data.price,
+      count: newCount,
+    });
+  };
+
+  const decrementCount = () => {
+    const newCount = count > 0 ? count - 1 : 0;
+    setCount(newCount);
+    if (newCount > 0) {
+      saveState(data.id, {
+        id: data.id,
+        img: data.img,
+        title: data.title,
+        price: data.price,
+        count: newCount,
+      });
+    } else {
+      localStorage.removeItem(data.id);
+      setCart(false);
+    }
+  };
 
   return (
     <>
@@ -17,7 +72,7 @@ export const ProductDetails = () => {
         ) : (
           <div key={data.id}>
             <h1 className="font-semibold text-2xl mt-6 mb-4">{data.title}</h1>
-            <div className="flex items-center gap-8 mb-6 pb-5 border-b-2">
+            <div className="flex  items-center gap-8 mb-6 pb-5 border-b-2">
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2">
                   <IoStar className="text-[#FFCE39] w-4 h-auto" />
@@ -33,10 +88,10 @@ export const ProductDetails = () => {
                 <p className="font-medium">В избранное</p>
               </div>
             </div>
-            <div className="flex items-start justify-between">
-              <div className="flex items-start gap-8">
+            <div className="flex flex-wrap gap-7 items-start justify-evenly">
+              <div className="flex flex-wrap justify-evenly items-start gap-8">
                 <img
-                  className="w-[435px] h-[435px]"
+                  className="sm:w-[435px] sm:h-[435px]"
                   src={data.img}
                   alt={data.title}
                 />
@@ -162,22 +217,44 @@ export const ProductDetails = () => {
                 <h4 className="font-semibold text-4xl mb-5 mt-2">
                   {data.price} Сум
                 </h4>
-                <Button
-                  className={"w-full text-center"}
-                  variant={"default"}
-                  children={"В корзину"}
-                />
+                {!cart && (
+                  <Button
+                    onClick={savetoLocal}
+                    className={"w-full text-center"}
+                    variant={"default"}
+                    children={"В корзину"}
+                  />
+                )}
+                {cart && (
+                  <div className="flex justify-evenly items-center mt-2">
+                    <button
+                      className="rounded-6 py-1 px-3 bg-gray-100 font-semibold hover:bg-white border-2"
+                      onClick={decrementCount}
+                    >
+                      -
+                    </button>
+                    <p className="rounded-6 py-1 px-3 bg-gray-100 font-semibold hover:bg-white border-2">
+                      {count}
+                    </p>
+                    <button
+                      className="rounded-6 py-1 px-3 bg-gray-100 font-semibold hover:bg-white border-2"
+                      onClick={incrementCount}
+                    >
+                      +
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <div className="mt-8">
-              <div className="flex items-center mb-9">
+              <div className="flex flex-col md:flex-row items-center mb-9">
                 <p className="text-2xl font-medium">Характеристики</p>
-                <p className="text-2xl font-medium ml-[54px] text-gray-400">
+                <p className="text-2xl font-medium mt-4 md:mt-0 md:ml-[54px] text-gray-400">
                   Отзывы
                 </p>
               </div>
-              <div className="flex mb-16 items-center justify-between">
-                <ul className="grid grid-cols-2 gap-4 w-full">
+              <div className="flex flex-col md:flex-row mb-16 items-center justify-between">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                   {data.color && (
                     <li className="flex items-center max-w-[600px] justify-between gap-4">
                       <p className="text-gray-400 truncate mb-4">Цвет</p>
@@ -188,9 +265,9 @@ export const ProductDetails = () => {
                     </li>
                   )}
                   {data.rame && (
-                    <li className="flex max-w-[600px] items-center justify-between gap-4">
+                    <li className="flex items-center max-w-[600px] justify-between gap-4">
                       <p className="text-gray-400 truncate mb-4">
-                        оперативная память
+                        Оперативная память
                       </p>
                       <hr className="text-gray-400 flex-grow mx-5" />
                       <p className="text-gray-700 truncate text-lg font-medium">
@@ -199,8 +276,8 @@ export const ProductDetails = () => {
                     </li>
                   )}
                   {data.brand && (
-                    <li className="flex max-w-[600px] items-center justify-between gap-4">
-                      <p className="text-gray-400 truncate mb-4">Brand </p>
+                    <li className="flex items-center max-w-[600px] justify-between gap-4">
+                      <p className="text-gray-400 truncate mb-4">Brand</p>
                       <hr className="text-gray-400 flex-grow mx-5" />
                       <p className="text-gray-700 truncate text-lg font-medium">
                         {data.brand}
@@ -208,8 +285,8 @@ export const ProductDetails = () => {
                     </li>
                   )}
                   {data.geForce && (
-                    <li className="flex max-w-[600px] items-center justify-between gap-4">
-                      <p className="text-gray-400 truncate mb-4">GeForce </p>
+                    <li className="flex items-center max-w-[600px] justify-between gap-4">
+                      <p className="text-gray-400 truncate mb-4">GeForce</p>
                       <hr className="text-gray-400 flex-grow mx-5" />
                       <p className="text-gray-700 truncate text-lg font-medium">
                         {data.geForce}
@@ -217,8 +294,8 @@ export const ProductDetails = () => {
                     </li>
                   )}
                   {data.core && (
-                    <li className="flex max-w-[600px] items-center justify-between gap-4">
-                      <p className="text-gray-400 truncate mb-4">core </p>
+                    <li className="flex items-center max-w-[600px] justify-between gap-4">
+                      <p className="text-gray-400 truncate mb-4">Core</p>
                       <hr className="text-gray-400 flex-grow mx-5" />
                       <p className="text-gray-700 truncate text-lg font-medium">
                         {data.core}
@@ -226,8 +303,8 @@ export const ProductDetails = () => {
                     </li>
                   )}
                   {data.display && (
-                    <li className="flex max-w-[600px] items-center justify-between gap-4">
-                      <p className="text-gray-400 truncate mb-4">display </p>
+                    <li className="flex items-center max-w-[600px] justify-between gap-4">
+                      <p className="text-gray-400 truncate mb-4">Display</p>
                       <hr className="text-gray-400 flex-grow mx-5" />
                       <p className="text-gray-700 truncate text-lg font-medium">
                         {data.display}
@@ -235,8 +312,8 @@ export const ProductDetails = () => {
                     </li>
                   )}
                   {data.memory && (
-                    <li className="flex max-w-[600px] items-center justify-between gap-4">
-                      <p className="text-gray-400 truncate mb-4">memory </p>
+                    <li className="flex items-center max-w-[600px] justify-between gap-4">
+                      <p className="text-gray-400 truncate mb-4">Memory</p>
                       <hr className="text-gray-400 flex-grow mx-5" />
                       <p className="text-gray-700 truncate text-lg font-medium">
                         {data.memory}
@@ -244,8 +321,8 @@ export const ProductDetails = () => {
                     </li>
                   )}
                   {data.weight && (
-                    <li className="flex max-w-[600px] items-center justify-between gap-4">
-                      <p className="text-gray-400 truncate mb-4">weight </p>
+                    <li className="flex items-center max-w-[600px] justify-between gap-4">
+                      <p className="text-gray-400 truncate mb-4">Weight</p>
                       <hr className="text-gray-400 flex-grow mx-5" />
                       <p className="text-gray-700 truncate text-lg font-medium">
                         {data.weight}
@@ -255,8 +332,8 @@ export const ProductDetails = () => {
                   {data.details && (
                     <>
                       {data.details.display && (
-                        <li className="flex max-w-[600px] items-center justify-between gap-4">
-                          <p className="text-gray-400 truncate mb-4">display</p>
+                        <li className="flex items-center max-w-[600px] justify-between gap-4">
+                          <p className="text-gray-400 truncate mb-4">Display</p>
                           <hr className="text-gray-400 flex-grow mx-5" />
                           <p className="text-gray-700 truncate text-lg font-medium">
                             {data.details.display}
@@ -264,9 +341,9 @@ export const ProductDetails = () => {
                         </li>
                       )}
                       {data.details.frequency && (
-                        <li className="flex max-w-[600px] items-center justify-between gap-4">
+                        <li className="flex items-center max-w-[600px] justify-between gap-4">
                           <p className="text-gray-400 truncate mb-4">
-                            frequency
+                            Frequency
                           </p>
                           <hr className="text-gray-400 flex-grow mx-5" />
                           <p className="text-gray-700 truncate text-lg font-medium">
@@ -275,8 +352,8 @@ export const ProductDetails = () => {
                         </li>
                       )}
                       {data.details.weight && (
-                        <li className="flex max-w-[600px] items-center justify-between gap-4">
-                          <p className="text-gray-400 truncate mb-4">weight</p>
+                        <li className="flex items-center max-w-[600px] justify-between gap-4">
+                          <p className="text-gray-400 truncate mb-4">Weight</p>
                           <hr className="text-gray-400 flex-grow mx-5" />
                           <p className="text-gray-700 truncate text-lg font-medium">
                             {data.details.weight}
@@ -284,9 +361,9 @@ export const ProductDetails = () => {
                         </li>
                       )}
                       {data.details.security && (
-                        <li className="flex max-w-[600px] items-center justify-between gap-4">
+                        <li className="flex items-center max-w-[600px] justify-between gap-4">
                           <p className="text-gray-400 truncate mb-4">
-                            security
+                            Security
                           </p>
                           <hr className="text-gray-400 flex-grow mx-5" />
                           <p className="text-gray-700 truncate text-lg font-medium">
@@ -295,9 +372,9 @@ export const ProductDetails = () => {
                         </li>
                       )}
                       {data.details.diagonal && (
-                        <li className="flex max-w-[600px] items-center justify-between gap-4">
+                        <li className="flex items-center max-w-[600px] justify-between gap-4">
                           <p className="text-gray-400 truncate mb-4">
-                            diagonal
+                            Diagonal
                           </p>
                           <hr className="text-gray-400 flex-grow mx-5" />
                           <p className="text-gray-700 truncate text-lg font-medium">

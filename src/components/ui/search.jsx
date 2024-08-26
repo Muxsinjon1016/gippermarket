@@ -11,7 +11,7 @@ const Search = ({ register }) => {
   const { data } = useSearch(debouncedValue);
 
   return (
-    <div className="flex items-center justify-between w-[675px] border-2 py-2 border-black px-4">
+    <div className="flex items-center justify-between max-w-[675px] lg:w-[400px] xl:w-[500px] border-2 py-2 border-black px-4">
       <Input
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Поиск"

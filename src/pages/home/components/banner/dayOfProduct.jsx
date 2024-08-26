@@ -31,8 +31,8 @@ export const DayOfProduct = () => {
 
   return (
     <div>
-      <div className="py-3 px-5 border-2 rounded-20 overflow-hidden">
-        <h3 className="text-2xl font-bold text-center mb-2">
+      <div className="py-3 px-5 border-2 rounded-20 mb-14 text-center mx-auto overflow-hidden">
+        <h3 className="md:text-2xl text-xl font-bold text-center mb-2">
           Product of the day
         </h3>
         <div>
@@ -46,7 +46,7 @@ export const DayOfProduct = () => {
                 key={randomProduct.id}
               >
                 <img
-                  className="w-[300px] transition-all duration-500 hover:scale-[1.05] h-[300px]"
+                  className="md:w-[300px] w-[200px] transition-all duration-500 hover:scale-[1.05] h-[200px] md:h-[300px]"
                   src={randomProduct.img}
                   alt="Product"
                 />

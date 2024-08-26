@@ -16,7 +16,7 @@ export const Brands = () => {
         <h2 className="text-xl container font-semibold mb-6">
           Популярные бренды
         </h2>
-        <div className="flex container flex-wrap gap-4 mb-[110px]">
+        <div className="flex justify-evenly container flex-wrap gap-4 mb-[110px]">
           {data?.map((brand) => (
             <div
               onClick={() => toDetails(brand.brand)}

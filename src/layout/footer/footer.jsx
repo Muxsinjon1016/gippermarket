@@ -15,8 +15,8 @@ export const Footer = () => {
     <>
       <div className="bg-[#f5f5f6] py-10">
         <div className="container">
-          <ul className="flex justify-between">
-            <li>
+          <ul className="flex flex-wrap justify-between">
+            <li className="w-[290px] mt-2">
               <div
                 onClick={() => navigate("/")}
                 className="relative ml-8 mb-6 cursor-pointer flex items-center gap-2"
@@ -33,23 +33,23 @@ export const Footer = () => {
               <h4 className="font-semibold mb-2">Оставайтесь на связи</h4>
               <ul className="flex items-center gap-4">
                 <li className="text-white transition-all duration-500 hover:scale-[1.2] rounded-12 bg-[#e44542] p-2">
-                  <FaFacebookF className="h-auto w-[31px]" />
+                  <FaFacebookF className="h-auto w-[25px] md:w-[31px] " />
                 </li>
                 <li className="text-white transition-all duration-500 hover:scale-[1.2] rounded-12 bg-[#e44542] p-2">
-                  <FaOdnoklassniki className="h-auto w-[31px]" />
+                  <FaOdnoklassniki className="h-auto w-[25px] md:w-[31px] " />
                 </li>
                 <li className="text-white transition-all duration-500 hover:scale-[1.2] rounded-12 bg-[#e44542] p-2">
-                  <FaVk className="h-auto w-[31px]" />
+                  <FaVk className="h-auto w-[25px] md:w-[31px] " />
                 </li>
                 <li className="text-white transition-all duration-500 hover:scale-[1.2] rounded-12 bg-[#e44542] p-2">
-                  <FaYoutube className="h-auto w-[31px]" />
+                  <FaYoutube className="h-auto w-[25px] md:w-[31px] " />
                 </li>
                 <li className="text-white transition-all duration-500 hover:scale-[1.2] rounded-12 bg-[#e44542] p-2">
-                  <FaInstagram className="h-auto w-[31px]" />
+                  <FaInstagram className="h-auto w-[25px] md:w-[31px] " />
                 </li>
               </ul>
             </li>
-            <li>
+            <li className="w-[290px] mt-2">
               <p className="mb-4">Условия обмена и возврата</p>
               <p className="mb-4">Каталог</p>
               <p className="mb-4">О компании</p>
@@ -57,13 +57,13 @@ export const Footer = () => {
               <p className="mb-4">Доставка</p>
               <p>Оплата</p>
             </li>
-            <li>
+            <li className="w-[290px] mt-2">
               <p className="mb-4">Клиентам</p>
               <p className="mb-4">Личный кабинет</p>
               <p className="mb-4">Блог</p>
               <p>Обратная связь</p>
             </li>
-            <li>
+            <li className="w-[290px] mt-2">
               <p className="mb-4">Информация</p>
               <p className="mb-4">Пользовательское соглашение</p>
               <p>Политика конфиденциальности и оферта</p>
@@ -72,12 +72,12 @@ export const Footer = () => {
         </div>
       </div>
       <div className="bg-[#eaeaea] py-7">
-        <div className="container flex items-center justify-between">
+        <div className="container flex flex-wrap items-center justify-between">
           <p>
             © 2024 Любое использование контента без письменного разрешения
             запрещено
           </p>
-          <div className="flex items-center gap-8">
+          <div className="flex mt-5 md:mt-0 items-center gap-8">
             <img src="payme.svg" alt="card" />
             <img src="uzcard.svg" alt="card" />
             <img src="humo.svg" alt="card" />

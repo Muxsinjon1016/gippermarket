@@ -19,9 +19,9 @@ export const Modal = ({ closeModal }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="rounded-20 bg-white shadow-lg w-[1100px] mt-[200px] border-4 py-[50px] px-[90px]"
+        className="rounded-20 bg-white shadow-lg w-[1100px] mt-[200px] border-4 py-[50px] px-7 sm:px-12 md:px-[90px]"
       >
-        <div className="flex items-center justify-between flex-wrap gap-10">
+        <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-10">
           {isLoading ? (
             <CategoriesSkeleton />
           ) : (
@@ -30,14 +30,14 @@ export const Modal = ({ closeModal }) => {
                 <>
                   <div
                     onClick={() => categoryProducts(category.name)}
-                    className="rounded-6 cursor-pointer text-center flex items-center gap-4 w-[245px] h-[115px] overflow-hidden bg-gray-200"
+                    className="rounded-6 cursor-pointer text-center sm:flex items-center gap-4 w-[120px] sm:w-[245px] h-[120px] sm:h-[115px] overflow-hidden bg-gray-200"
                   >
                     <img
-                      className="w-[96px] h-[96px] py-[14px] px-4"
+                      className="sm:w-[96px] mx-auto w-[75px] h-[75px] sm:h-[96px] py-[14px] px-4"
                       src={category.img}
                       alt={category.name}
                     />
-                    <p className="font-medium">{category.text}</p>
+                    <p className="font-medium mx-auto">{category.text}</p>
                   </div>
                 </>
               );
